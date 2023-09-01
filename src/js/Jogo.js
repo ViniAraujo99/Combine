@@ -91,7 +91,7 @@ function criaCards(_dificuldade) {
 
     limparTabuleiro();
     
-    let arr = ["Maca", "Banana", "Melancia", "Morango", "Abacaxi", "Abacate", "Uva"];
+    let arr = ["maca", "banana", "melancia", "morango", "abacaxi", "abacate", "uva"];
     let arraySort = 0;
     arraySort = arraySortido(arr, _dificuldade);
     
