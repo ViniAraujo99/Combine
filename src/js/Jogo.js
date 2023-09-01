@@ -113,6 +113,8 @@ function criaCards(_dificuldade) {
 
         img.src = `./src/img/${arraySort[i]}.png`;
         img.alt = `${arraySort[i]}`;
+        img.width = '150px';
+        img.height = '150px';
         divBackView.innerHTML = "?";
     }
 }
