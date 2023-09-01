@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+:root {
+    /*COLORS*/
+    --white:        #FFFFFF;
+    --black:        #000000;
+    --bg:           #ececec;
+    --bg-btn:       #d1d1d1;
+    --bg-btn-hover: #6b6b6b;
+    --win:          #00FF00;
+    --lose:         #FF0000;
+
+    /*FONTS*/
+    --f1:       'Russo One', Impact, 'Arial Narrow Bold', sans-serif;
+    --f2:       'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-family: var(--f2);
+}
+
+.header {
+    background-color: rgb(211, 211, 211);
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px 15px;
+}
+
+.header__brand {
+    max-width: 120px;
+}
+
+.header__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 25px;
+    height: 25px;
+
+    position: relative;
+}
+
+.header__menu span {
+    width: 100%;
+    line-height: 1px;
+    padding: 1px 5px;
+    background-color: var(--black);
+    border-radius: 25px;
+
+    position: absolute;
+    transition: 1s cubic-bezier(.63,-0.54,.39,.77);
+}
+
+.header__menu span:nth-child(1) {
+    top: 10%;
+}
+
+.header__menu span:nth-child(3) {
+    top: 85%;
+}
+
+
+.header__menu-active span:nth-child(1) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50px);
+    transform: rotateZ(45deg);
+}
+
+.header__menu-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.header__menu-active span:nth-child(3) {
+    top: 50%;
+    transform: translateY(-50px);
+    position: absolute;
+    transform: rotateZ(-45deg);
+}
+
+
+.header__list {
+    /*Interação*/
+    position: absolute;
+    top: 100%;
+    left: -100%;
+
+    /*Exibição*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 25px 0;
+    width: 100%;
+    height: calc(100vh - 100%);
+    background: var(--bg);
+    z-index: 999;
+
+    /*Transição*/
+    transition: 1s cubic-bezier(.17,.67,.18,.99);
+}
+
+.header__list-active {
+    left: 0%;
+}
+
+.header__list-title {
+    font-family: var(--f1);
+}
+
+.header__list-item button {
+    font-size: 1.5em;
+    padding: 5px 15px;
+    /*border: 1px solid red;*/
+    border-radius: 25px;
+    background-color: var(--bg-btn);
+    box-shadow: 0px 2px 5px var(--black);
+}
+
+.header__list-item button:hover {
+    background-color: var(--bg-btn-hover);
+}
+
+/****************************/
+/****************************/
+/****************************/
+.main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 15%;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 1px 5px  5px var(--black);
+    visibility: hidden;
+}
+
+.modal-perdeu {
+    visibility: visible;
+    background: var(--lose);
+}
+
+.modal-ganhou {
+    visibility: visible;
+    background: var(--win);
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.game__cards {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: auto;
+   align-items: center;
+   justify-items: center;
+   gap: 15px 10px;
+}
+
+
+.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    box-shadow: 0px 2px 5px var(--black);
+    background: var(--white);
+}
+
+.card__front-view, .card__back-view {
+    user-select: none;
+    pointer-events: none; 
+    backface-visibility: hidden;
+    background-color: var(--white);
+    position: absolute;
+    transition: transform 0.25s linear; 
+}
+
+.card__back-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 90%;
+    font-size: 150px;
+    transform: rotateY(0deg);
+
+    transition: 1s all;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.game img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.game__status-container {
+    width: 100%;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.game__status {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+.reiniciar {
+    font-weight: bold;
+    background-color: var(--bg-btn);
+    padding: 10px 15px;
+    border-radius: 25px;
+}
+
+.reiniciar:hover {
+    background-color: var(--bg-btn-hover);
+}
+
+/****************************/
+/****************************/
+/****************************/
+.footer {
+    background-color: rgb(211, 211, 211);
+}
+
+.footer__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px 15px;
+}
+
+.footer img {
+    max-width: 80px;
+}
