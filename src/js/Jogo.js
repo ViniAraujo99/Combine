@@ -1,5 +1,7 @@
 import { flipa } from "./VerificaCards.js";
 import flips from "./VerificaCards.js";
+import { openCloseMenu } from "./MenuToggle.js";
+
 
 //VARIÁVEIS DE APOIO
 let intervalo;
@@ -35,17 +37,17 @@ export function escolherDificuldade() {
     }
 
     facil.addEventListener('click', () => {
-        fecharMenu();
+        openCloseMenu();
         ajustarJogoConformeDificuldade('facil');
     });
 
     medio.addEventListener('click', () => {
-        fecharMenu();
+        openCloseMenu();
         ajustarJogoConformeDificuldade('medio')
     });
 
     dificil.addEventListener('click', () => {
-        fecharMenu()
+        openCloseMenu()
         ajustarJogoConformeDificuldade('dificil')
     });
 }
@@ -91,7 +93,7 @@ function criaCards(_dificuldade) {
 
     limparTabuleiro();
     
-    let arr = ["maca", "banana", "melancia", "morango", "abacaxi", "abacate", "uva"];
+    let arr = ["maça", "laranja", "banana", "melancia", "morango", "abacaxi", "abacate", "uva"];
     let arraySort = 0;
     arraySort = arraySortido(arr, _dificuldade);
     
@@ -121,8 +123,11 @@ function criaCards(_dificuldade) {
 function arraySortido(array, _dificuldade) {
     let novoArray, arrayCombinado;
 
-    if (_dificuldade ==  'facil' || _dificuldade ==  'medio') {
+    if (_dificuldade ==  'facil') {
         novoArray       = array.sort(()     => Math.floor(Math.random() > .5 ? 1 : -1)).slice(0,4);
+    }
+    else if (_dificuldade ==  'medio') {
+        novoArray       = array.sort(()     => Math.floor(Math.random() > .5 ? 1 : -1)).slice(0,6);
     }
     else {
         novoArray       = array.sort(()     => Math.floor(Math.random() > .5 ? 1 : -1));
@@ -177,13 +182,6 @@ function ganhou() {
     modal.firstElementChild.innerHTML = "Parabéns, você venceu :D"
     modal.classList.add("modal-ganhou");
 }
-
-//FECHA O MENU
-function fecharMenu() {
-    menu.classList.remove("header__list-active");
-    menuBtn.classList.toggle("header__menu-active");
-};
-
 
 //REINICIA O JOGO
 export function reiniciar() {
