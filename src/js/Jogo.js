@@ -161,7 +161,7 @@ function verificaSePerdeu(tempo) {
 function perdeu() {
     window.scrollTo({ top: modal.offsetTop, behavior: 'smooth' } );
     setTimeout(() => {
-        modal.firstElementChild.innerHTML = "Puxa, você perdeu, mais sorte na próxima :/"
+        modal.firstElementChild.innerHTML = "Puxa, você perdeu! Mais sorte na próxima :/"
         modal.classList.add("modal-perdeu");
     }, 500);
     jogoController.perdeu = true;
